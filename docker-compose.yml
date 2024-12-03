@@ -1,0 +1,19 @@
+volumes:
+  data:
+  
+services:
+  json_storage:
+    image: ghcr.io/vvzvlad/simple_json_storage:latest
+    container_name: simple_json_storage
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Moscow
+    volumes:
+      - data:/app/data
+    logging:
+      driver: "json-file"
+      options:
+        max-file: 5
+        max-size: 10m
+    labels:
+      com.centurylinklabs.watchtower.enable: "true" 
